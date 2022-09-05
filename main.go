@@ -17,7 +17,8 @@ const (
 )
 
 func main() {
-	add := flag.Bool("add", false, "新規タスク登録")
+	add := flag.Bool("add", false, "新規タスク登録\n")
+	comp := flag.Int("comp", 0, "タスク完了\n")
 
 	flag.Parse()
 
@@ -36,6 +37,15 @@ func main() {
 			os.Exit(1)
 		}
 		todos.Add(task)
+		if err := todos.Store(todoFile); err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+			os.Exit(1)
+		}
+	case *comp > 0:
+		if err := todos.Comp(*comp); err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+			os.Exit(1)
+		}
 		if err := todos.Store(todoFile); err != nil {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)

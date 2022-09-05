@@ -27,6 +27,18 @@ func (t *Todos) Add(task string) {
 	*t = append(*t, todo)
 }
 
+func (t *Todos) Comp(id int) error {
+	ls := *t
+	if id <= 0 || id > len(ls) {
+		return errors.New("invalid ID")
+	}
+
+	ls[id-1].CompletedAt = time.Now()
+	ls[id-1].Done = true
+
+	return nil
+}
+
 func (t *Todos) Load(filename string) error {
 	file, err := os.ReadFile(filename)
 	if err != nil {
