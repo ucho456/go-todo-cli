@@ -20,6 +20,7 @@ func main() {
 	add := flag.Bool("add", false, "タスク登録\n")
 	comp := flag.Int("comp", 0, "タスク完了\n")
 	del := flag.Int("del", 0, "タスク削除\n")
+	list := flag.Bool("list", false, "タスクリスト表示")
 
 	flag.Parse()
 
@@ -60,6 +61,8 @@ func main() {
 			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(1)
 		}
+	case *list:
+		todos.Print()
 	}
 }
 

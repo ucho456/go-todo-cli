@@ -3,6 +3,7 @@ package todo
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 	"time"
 )
@@ -48,6 +49,13 @@ func (t *Todos) Del(id int) error {
 	*t = append(ls[:id-1], ls[id:]...)
 
 	return nil
+}
+
+func (t *Todos) Print() {
+	for i, item := range *t {
+		i++
+		fmt.Printf("%d - %s\n", i, item.Task)
+	}
 }
 
 func (t *Todos) Load(filename string) error {
