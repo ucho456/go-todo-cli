@@ -63,6 +63,9 @@ func main() {
 		}
 	case *list:
 		todos.Print()
+	default:
+		fmt.Fprintln(os.Stdout, "不正なコマンドです。")
+		os.Exit(0)
 	}
 }
 
@@ -80,7 +83,7 @@ func getInput(r io.Reader, args ...string) (string, error) {
 	text := scanner.Text()
 
 	if len(text) == 0 {
-		return "", errors.New("empty todo is not allowed")
+		return "", errors.New("空のTODOは登録できません。")
 	}
 
 	return text, nil

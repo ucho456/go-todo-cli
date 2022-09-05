@@ -31,7 +31,7 @@ func (t *Todos) Add(task string) {
 func (t *Todos) Comp(id int) error {
 	ls := *t
 	if id <= 0 || id > len(ls) {
-		return errors.New("invalid ID")
+		return errors.New("不正なIDです。")
 	}
 
 	ls[id-1].CompletedAt = time.Now()
@@ -43,7 +43,7 @@ func (t *Todos) Comp(id int) error {
 func (t *Todos) Del(id int) error {
 	ls := *t
 	if id <= 0 || id > len(ls) {
-		return errors.New("invalid ID")
+		return errors.New("不正なIDです。")
 	}
 
 	*t = append(ls[:id-1], ls[id:]...)
