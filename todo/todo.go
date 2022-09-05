@@ -39,6 +39,17 @@ func (t *Todos) Comp(id int) error {
 	return nil
 }
 
+func (t *Todos) Del(id int) error {
+	ls := *t
+	if id <= 0 || id > len(ls) {
+		return errors.New("invalid ID")
+	}
+
+	*t = append(ls[:id-1], ls[id:]...)
+
+	return nil
+}
+
 func (t *Todos) Load(filename string) error {
 	file, err := os.ReadFile(filename)
 	if err != nil {
