@@ -1,5 +1,5 @@
 # go-todo-cli
-Go製のCLIで使えるTODOツールです。
+Goで作成したCLIで使えるTODOツールです。
 
 ## コマンド
 ### Linux・Mac
